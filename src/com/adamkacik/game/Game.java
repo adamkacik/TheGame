@@ -10,115 +10,118 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
-import com.adamkacik.game.graphic.Screen;
+import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.input.Keyboard;
 
+public class Game extends Canvas implements Runnable {
 
-public class Game extends Canvas implements Runnable{
-
-	
 	private static final long serialVersionUID = 1L;
-	public static int width=300;
-	public static int height = width/16*9;
+	public static int width = 300;
+	public static int height = width / 16 * 9;
 	public static int scale = 3;
 	public static String title = "The Game";
-	
+
 	private Screen screen;
 	private Thread thread;
 	private JFrame frame;
 	private Keyboard key;
 	private boolean running = false;
-	
+
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
-	int x,y;
+	private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
+	int x, y;
+
 	public Game() {
-		Dimension size = new Dimension(width*scale, height*scale);
+		Dimension size = new Dimension(width * scale, height * scale);
 		setPreferredSize(size);
-		screen= new Screen(width,height);
+		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
-		
-		frame.addKeyListener(key);   // i must add prefix "frame." to work this
+
+		frame.addKeyListener(key); // i must add prefix "frame." to work this
 	}
-	
+
 	public synchronized void start() {
 		running = true;
 		thread = new Thread(this, "Display");
 		thread.start();
 	}
-	
+
 	public synchronized void stop() {
 		running = false;
 		try {
 			thread.join();
-		}catch (InterruptedException e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void run() {
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
-		final double ns = 1000000000.0/60.0;
-		double delta= 0;
+		final double ns = 1000000000.0 / 60.0;
+		double delta = 0;
 		int frames = 0;
 		int updates = 0;
-		while(running) {
+		frame.requestFocus();
+		while (running) {
 			long now = System.nanoTime();
-			delta += (now-lastTime)/ns;
-			
+			delta += (now - lastTime) / ns;
+
 			lastTime = now;
-			while(delta >=1) {
+			while (delta >= 1) {
 				update();
 				updates++;
-				delta --;
+				delta--;
 			}
 			render();
 			frames++;
-			if (System.currentTimeMillis() - timer>1000) {						
-				timer+=1000;
-				frame.setTitle(title +" | "+updates+ "ups, " +frames+ " fps");  //Show to title,ups,fps
+			if (System.currentTimeMillis() - timer > 1000) {
+				timer += 1000;
+				frame.setTitle(title + " | " + updates + "ups, " + frames + " fps"); // Show to title,ups,fps
 				updates = 0;
-				frames =0;
+				frames = 0;
 			}
-			
+
 		}
 		stop();
 	}
-	
+
 	public void update() {
 		key.update();
-		if (key.up)y--;
-		if(key.down)y++;
-		if (key.left)x--;
-		if(key.right)x++;
-		
-		
+		if (key.up)
+			y--;
+		if (key.down)
+			y++;
+		if (key.left)
+			x--;
+		if (key.right)
+			x++;
+
 	}
+
 	public void render() {
 		BufferStrategy bs = getBufferStrategy();
-		if (bs==null) {
+		if (bs == null) {
 			createBufferStrategy(3);
 			return;
 		}
-		
+
 		screen.clear();
-		screen.render(x,y);
-		for(int i=0; i<pixels.length;i++) {
-			pixels[i]=screen.pixels[i];
+		screen.render(x, y);
+		for (int i = 0; i < pixels.length; i++) {
+			pixels[i] = screen.pixels[i];
 		}
-		
+
 		Graphics g = bs.getDrawGraphics();
-		
-		
+
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.dispose();
 		bs.show();
 	}
-	
+
 	public static void main(String[] args) {
-		
+
 		Game game = new Game();
 		game.frame.setResizable(false);
 		game.frame.setTitle(Game.title);
@@ -127,8 +130,8 @@ public class Game extends Canvas implements Runnable{
 		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		game.frame.setLocationRelativeTo(null);
 		game.frame.setVisible(true);
-		
+
 		game.start();
-		
+
 	}
 }
