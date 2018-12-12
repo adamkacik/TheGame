@@ -11,6 +11,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import com.adamkacik.game.graphic.Screen;
+import com.adamkacik.game.input.Keyboard;
 
 
 public class Game extends Canvas implements Runnable{
@@ -25,6 +26,7 @@ public class Game extends Canvas implements Runnable{
 	private Screen screen;
 	private Thread thread;
 	private JFrame frame;
+	private Keyboard key;
 	private boolean running = false;
 	
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -35,6 +37,9 @@ public class Game extends Canvas implements Runnable{
 		setPreferredSize(size);
 		screen= new Screen(width,height);
 		frame = new JFrame();
+		key = new Keyboard();
+		
+		frame.addKeyListener(key);   // i must add prefix "frame." to work this
 	}
 	
 	public synchronized void start() {
@@ -71,9 +76,9 @@ public class Game extends Canvas implements Runnable{
 			}
 			render();
 			frames++;
-			if (System.currentTimeMillis() - timer>1000) {
+			if (System.currentTimeMillis() - timer>1000) {						
 				timer+=1000;
-				frame.setTitle(title +" | "+updates+ "ups, " +frames+ " fps");
+				frame.setTitle(title +" | "+updates+ "ups, " +frames+ " fps");  //Show to title,ups,fps
 				updates = 0;
 				frames =0;
 			}
@@ -83,8 +88,12 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public void update() {
-		x++;
-		y++;
+		key.update();
+		if (key.up)y--;
+		if(key.down)y++;
+		if (key.left)x--;
+		if(key.right)x++;
+		
 		
 	}
 	public void render() {
