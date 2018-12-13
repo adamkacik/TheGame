@@ -3,6 +3,7 @@ package com.adamkacik.game;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -12,6 +13,9 @@ import javax.swing.JFrame;
 
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.input.Keyboard;
+import com.adamkacik.game.level.Level;
+import com.adamkacik.game.level.RandomLevel;
+import com.adamkacik.game.mob.Player;
 
 public class Game extends Canvas implements Runnable {
 
@@ -25,6 +29,8 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private JFrame frame;
 	private Keyboard key;
+	private Level level;
+	private Player player;
 	private boolean running = false;
 
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -37,6 +43,8 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
+		level = new RandomLevel(64,64);
+		player = new Player(key);
 
 		frame.addKeyListener(key); // i must add prefix "frame." to work this
 	}
@@ -89,14 +97,7 @@ public class Game extends Canvas implements Runnable {
 
 	public void update() {
 		key.update();
-		if (key.up)
-			y--;
-		if (key.down)
-			y++;
-		if (key.left)
-			x--;
-		if (key.right)
-			x++;
+		player.update();
 
 	}
 
@@ -108,7 +109,11 @@ public class Game extends Canvas implements Runnable {
 		}
 
 		screen.clear();
-		screen.render(x, y);
+		int xScroll = player.x - screen.width/2;		//middle of screen
+		int yScroll = player.y - screen.height/2;
+		level.render(xScroll, yScroll, screen);
+		player.render(screen);
+		
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
 		}
@@ -116,6 +121,9 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("Veranda",0,50));
+		g.drawString("X:  "+player.x+", Y: "+player.y,450,400);
 		g.dispose();
 		bs.show();
 	}
