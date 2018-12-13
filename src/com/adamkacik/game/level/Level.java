@@ -1,5 +1,7 @@
 package com.adamkacik.game.level;
 
+import java.util.Random;
+
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.level.tile.Tile;
 
@@ -7,6 +9,7 @@ public class Level {
 
 	protected int width, height;
 	protected int[] tiles;
+	private static Random random = new Random();
 	
 	public Level(int width, int height) {
 		this.width = width;
@@ -17,8 +20,12 @@ public class Level {
 	public Level(String path) {
 		loadLevel(path);
 	}
-	private void generateLevel() {
-		
+	private void generateLevel() {							// add this class from RandomLevel.java
+		for (int y=0;y<height;y++) {
+			for (int x=0;x<width;x++) {
+				tiles[x+y*width] = random.nextInt(4); //generate 0-3
+	}
+		}
 	}
 	private void loadLevel(String path) {
 		
@@ -47,6 +54,8 @@ public class Level {
 	public Tile getTile(int x, int y) {
 		if (x<0 || y<0 || x>=width || y>=height) return Tile.voidTile;
 		if (tiles[x+y*width]==0) return Tile.grass;
+		if (tiles[x+y*width]==1) return Tile.flower;
+		if (tiles[x+y*width]==2) return Tile.rock;
 		return Tile.voidTile;
 		
 	}
