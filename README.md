@@ -3,7 +3,7 @@
 
 #I use help from TheChernoProject "Game Programing" 
 
-
+![image]https://raw.githubusercontent.com/adamkacik/TheGame/master/screenshot.png
 Eclipse IDE for Java Developers
 Version: Photon Release (4.8.0)
 Build id: 20180619-1200
