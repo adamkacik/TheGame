@@ -15,6 +15,7 @@ import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.input.Keyboard;
 import com.adamkacik.game.level.Level;
 import com.adamkacik.game.level.RandomLevel;
+import com.adamkacik.game.level.SpawnLevel;
 import com.adamkacik.game.mob.Player;
 
 public class Game extends Canvas implements Runnable {
@@ -43,7 +44,7 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
-		level = new RandomLevel(64,64);
+		level = new SpawnLevel("/sheet/SpawnLevel.png");
 		player = new Player(key);
 
 		frame.addKeyListener(key); // i must add prefix "frame." to work this
