@@ -7,10 +7,11 @@ import com.adamkacik.game.level.tile.Tile;
 
 public class Level {
 
-	protected Tile[] tiles;
+	//protected Tile[] tiles;
 	protected int width, height;
 	protected int[] tilesInt;
-	private static Random random = new Random();
+	//private static Random random = new Random();
+	protected int[] tiles;
 
 	public Level(int width, int height) {
 		this.width = width;
@@ -33,7 +34,7 @@ public class Level {
 	}
 
 	protected void loadLevel(String path) {
-
+	
 	}
 
 	public void update() {
@@ -53,26 +54,24 @@ public class Level {
 
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x < x1; x++) {
-				// getTile(x,y).render(x, y, screen);
-				if (x + y * 16 < 0 || x + y * 16 >= 256) {
-					Tile.voidTile.render(x, y, screen);
-					continue;
-				}
-				tiles[x + y * 16].render(x, y, screen);
+				getTile(x,y).render(x, y, screen);
+				
 			}
 		}
 
 	}
-
+		// Grass = 0xFF00
+		// Flower = 0xFFFF00
+		// Stone = 0x7F7F00
 	public Tile getTile(int x, int y) {
-		if (x < 0 || y < 0 || x >= width || y >= height)
+		if (x < 0 || y < 0|| x >= width || y >= height)
 			return Tile.voidTile;
-		if (tilesInt[x + y * width] == 0)
-			return Tile.grass;
-		if (tilesInt[x + y * width] == 1)
-			return Tile.flower;
-		if (tilesInt[x + y * width] == 2)
-			return Tile.rock;
+			
+			
+		if (tiles[x + y * width] == 0xff00ff00) return Tile.grass;
+		
+		if (tiles[x + y * width] == 0xFFFFFF00)	return Tile.flower;
+		if (tiles[x + y * width] == 0xFF7F7F00)	return Tile.rock;
 		return Tile.voidTile;
 
 	}
