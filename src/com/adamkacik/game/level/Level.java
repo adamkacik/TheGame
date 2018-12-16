@@ -24,7 +24,7 @@ public class Level {
 		generateLevel();
 	}
 
-	private void generateLevel() { // add this class from RandomLevel.java
+	protected void generateLevel() { // add this class from RandomLevel.java
 		// for (int y=0;y<height;y++) {
 		// for (int x=0;x<width;x++) {
 		// tiles[x+y*width] = random.nextInt(4); //generate 0-3

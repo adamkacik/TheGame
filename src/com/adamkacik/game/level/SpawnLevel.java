@@ -9,7 +9,7 @@ import com.adamkacik.game.level.tile.Tile;
 
 public class SpawnLevel extends Level {
 
-	private Tile[] tiles;
+	//protected Tile[] tiles;
 	private int[] levelPixels;
 
 	public SpawnLevel(String path) {
