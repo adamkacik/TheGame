@@ -11,7 +11,8 @@ public class SpriteSheet {
 	public final int SIZE;
 	public int[] pixels;
 	
-	public static SpriteSheet tiles = new SpriteSheet("/sheet/spritesheet.png",64);
+	public static SpriteSheet tiles = new SpriteSheet("/sheet/spritesheet.png",80);
+	public static SpriteSheet spawn_level = new SpriteSheet("/sheet/spritesheet.png",80);
 
 	public SpriteSheet(String path, int size) {
 		this.path = path;

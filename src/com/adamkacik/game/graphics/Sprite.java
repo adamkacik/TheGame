@@ -10,6 +10,19 @@ public class Sprite {
 	public static Sprite flower = new Sprite(16,1,0, SpriteSheet.tiles);
 	public static Sprite rock = new Sprite(16, 2,0, SpriteSheet.tiles);
 	public static Sprite voidSprite = new Sprite(16,0);
+	// sprite for spawn_level
+	public static Sprite spawn_grass = new Sprite(16, 0,0, SpriteSheet.spawn_level);
+	public static Sprite spawn_hedge = new Sprite(16, 1,0, SpriteSheet.spawn_level);
+	public static Sprite spawn_wall1 = new Sprite(16, 2,0, SpriteSheet.spawn_level);
+	public static Sprite spawn_wall2 = new Sprite(16, 3,0, SpriteSheet.spawn_level);
+	public static Sprite spawn_floor = new Sprite(16, 3,2, SpriteSheet.spawn_level);
+	public static Sprite spawn_stone = new Sprite(16, 3,3, SpriteSheet.spawn_level);
+	public static Sprite spawn_water = new Sprite(16, 3,1, SpriteSheet.spawn_level);
+	public static Sprite spawn_flower = new Sprite(16, 3,4, SpriteSheet.spawn_level);
+	public static Sprite spawn_rock = new Sprite(16,2,4, SpriteSheet.spawn_level);
+	
+	
+	
 	
 	
 	// sprite of player's character direction

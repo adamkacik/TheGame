@@ -12,6 +12,7 @@ public class Level {
 	protected int[] tilesInt;
 	//private static Random random = new Random();
 	protected int[] tiles;
+	public static Level spawn = new SpawnLevel("/sheet/spawn_level.png");
 
 	public Level(int width, int height) {
 		this.width = width;
@@ -68,10 +69,18 @@ public class Level {
 			return Tile.voidTile;
 			
 			
-		if (tiles[x + y * width] == 0xff00ff00) return Tile.grass;
+		if (tiles[x + y * width] == Tile.col_spawn_grass) return Tile.spawn_grass;
 		
-		if (tiles[x + y * width] == 0xFFFFFF00)	return Tile.flower;
-		if (tiles[x + y * width] == 0xFF7F7F00)	return Tile.rock;
+		if (tiles[x + y * width] == Tile.col_spawn_water)	return Tile.spawn_water;
+		if (tiles[x + y * width] == Tile.col_spawn_wall1)	return Tile.spawn_wall1;
+		if (tiles[x + y * width] == Tile.col_spawn_wall2)	return Tile.spawn_wall2;
+		if (tiles[x + y * width] == Tile.col_spawn_floor)	return Tile.spawn_floor;
+		if (tiles[x + y * width] == Tile.col_spawn_stone)	return Tile.spawn_stone;
+		if (tiles[x + y * width] == Tile.col_spawn_hedge)	return Tile.spawn_hedge;
+		if (tiles[x + y * width] == Tile.col_spawn_flower)	return Tile.spawn_flower;
+		if (tiles[x + y * width] == Tile.col_spawn_rock)	return Tile.spawn_rock;
+		
+		
 		return Tile.voidTile;
 
 	}
