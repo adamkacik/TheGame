@@ -9,7 +9,7 @@ public class Sprite {
 	public static Sprite grass = new Sprite(16, 0,0, SpriteSheet.tiles);
 	public static Sprite flower = new Sprite(16,1,0, SpriteSheet.tiles);
 	public static Sprite rock = new Sprite(16, 2,0, SpriteSheet.tiles);
-	public static Sprite voidSprite = new Sprite(16,0);
+	public static Sprite voidSprite = new Sprite(16,0x1B87E0);
 	// sprite for spawn_level
 	public static Sprite spawn_grass = new Sprite(16, 0,0, SpriteSheet.spawn_level);
 	public static Sprite spawn_hedge = new Sprite(16, 1,0, SpriteSheet.spawn_level);

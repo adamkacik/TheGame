@@ -8,15 +8,19 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.io.File;
 
 import javax.swing.JFrame;
 
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.input.Keyboard;
+import com.adamkacik.game.input.Mouse;
 import com.adamkacik.game.level.Level;
 import com.adamkacik.game.level.RandomLevel;
 import com.adamkacik.game.level.SpawnLevel;
+import com.adamkacik.game.level.TileCoordinate;
 import com.adamkacik.game.mob.Player;
+import com.adamkacik.game.music.Music;
 
 public class Game extends Canvas implements Runnable {
 
@@ -32,6 +36,7 @@ public class Game extends Canvas implements Runnable {
 	private Keyboard key;
 	private Level level;
 	private Player player;
+	//private Music music;					// music
 	private boolean running = false;
 
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -45,9 +50,19 @@ public class Game extends Canvas implements Runnable {
 		frame = new JFrame();
 		key = new Keyboard();
 		level = Level.spawn;
-		player = new Player(width/2,height/2,key);		//place where player appears
-
+		TileCoordinate playerSpawn = new TileCoordinate(121,193);
+		player = new Player(playerSpawn.x()>>4,playerSpawn.y()>>4,key);		//place where player appears
+		player.init(level);
+		
+		
+		//music = new Music();			//music
+		//music.PlaySound();			//music
+		
 		frame.addKeyListener(key); // i must add prefix "frame." to work this
+		Mouse mouse = new Mouse();
+		addMouseListener(mouse);
+		addMouseMotionListener(mouse);
+		
 	}
 
 	public synchronized void start() {
@@ -72,11 +87,12 @@ public class Game extends Canvas implements Runnable {
 		double delta = 0;
 		int frames = 0;
 		int updates = 0;
-		frame.requestFocus();
+		frame.requestFocus();				// to focus when I press keys
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 
+			frame.requestFocus();			//when I press mouse button without this - game crash
 			lastTime = now;
 			while (delta >= 1) {
 				update();
@@ -126,6 +142,8 @@ public class Game extends Canvas implements Runnable {
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Veranda",0,50));
 		g.drawString("X:  "+player.x+", Y: "+player.y,450,400);
+		if(Mouse.getButton()!=-1) g.drawString("Button:  "+Mouse.getButton(),100,120);
+		
 		g.dispose();
 		bs.show();
 	}
