@@ -1,7 +1,11 @@
 package com.adamkacik.game.level;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import com.adamkacik.game.entity.Entity;
+import com.adamkacik.game.entity.projectile.Projectile;
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.level.tile.Tile;
 
@@ -12,8 +16,15 @@ public class Level {
 	protected int[] tilesInt;
 	//private static Random random = new Random();
 	protected int[] tiles;
+	
+	private List<Entity> entities = new ArrayList<Entity>();
+	private List<Projectile> projectiles = new ArrayList<Projectile>();
+	
 	public static Level spawn = new SpawnLevel("/sheet/spawn_level.png");
 
+	
+	
+	
 	public Level(int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -39,9 +50,18 @@ public class Level {
 	}
 
 	public void update() {
-
+		for (int i=0;i<entities.size();i++){
+			entities.get(i).update();
+		}
+		for (int i=0;i<projectiles.size();i++){
+			projectiles.get(i).update();
+		}
 	}
 
+	public List<Projectile> getProjectiles(){
+		return projectiles;
+	}
+	
 	private void time() {
 
 	}
@@ -56,10 +76,20 @@ public class Level {
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x < x1; x++) {
 				getTile(x,y).render(x, y, screen);
-				
 			}
 		}
-
+		for (int i=0;i<entities.size();i++){
+			entities.get(i).render(screen);
+		}
+		for (int i=0;i<projectiles.size();i++){
+			projectiles.get(i).render(screen);
+		}
+	}
+	public void add(Entity e) {
+		entities.add(e);
+	}
+	public void addProjectile(Projectile p) {
+		projectiles.add(p);
 	}
 		// Grass = 0xFF00
 		// Flower = 0xFFFF00

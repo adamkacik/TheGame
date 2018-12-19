@@ -13,7 +13,9 @@ public class SpriteSheet {
 	
 	public static SpriteSheet tiles = new SpriteSheet("/sheet/spritesheet.png",80);
 	public static SpriteSheet spawn_level = new SpriteSheet("/sheet/spritesheet.png",80);
-
+	public static SpriteSheet projectile_wizard = new SpriteSheet("/projectiles/wizard.png",48);
+	
+	
 	public SpriteSheet(String path, int size) {
 		this.path = path;
 		SIZE = size;
