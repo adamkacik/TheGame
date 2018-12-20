@@ -19,6 +19,7 @@ import com.adamkacik.game.level.Level;
 import com.adamkacik.game.level.RandomLevel;
 import com.adamkacik.game.level.SpawnLevel;
 import com.adamkacik.game.level.TileCoordinate;
+import com.adamkacik.game.mob.Bird;
 import com.adamkacik.game.mob.Player;
 import com.adamkacik.game.music.Music;
 
@@ -36,6 +37,7 @@ public class Game extends Canvas implements Runnable {
 	private Keyboard key;
 	private Level level;
 	private Player player;
+	//private Bird bird;						//bird animation
 	//private Music music;					// music
 	private boolean running = false;
 
@@ -121,6 +123,7 @@ public class Game extends Canvas implements Runnable {
 		key.update();
 		player.update();
 		level.update();
+		
 	}
 
 	public void render() {

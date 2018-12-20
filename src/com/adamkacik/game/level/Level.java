@@ -63,9 +63,21 @@ public class Level {
 	}
 	
 	private void time() {
-
 	}
 
+	public boolean tileCollision(double x, double y, double xa,double ya, int size) {	//collision for shooting
+		boolean solid=false;
+		for (int c=0;c<4;c++) {
+			int xt=(((int)x+(int)xa)+c%2*size+2)/16;		//size/10+8)/16;
+			int yt=(((int)y+(int)ya)+c/2*size+4)/16;		//size/5+8)/16;	
+	
+		if (getTile((int) xt,(int) yt).solid()) solid =true;
+		}
+		return solid;
+	}
+	
+	
+	
 	public void render(int xScroll, int yScroll, Screen screen) {
 		screen.setOffset(xScroll, yScroll);
 		int x0 = xScroll >> 4;
@@ -89,6 +101,7 @@ public class Level {
 		entities.add(e);
 	}
 	public void addProjectile(Projectile p) {
+		p.init(this);
 		projectiles.add(p);
 	}
 		// Grass = 0xFF00

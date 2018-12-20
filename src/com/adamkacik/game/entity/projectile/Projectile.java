@@ -11,7 +11,7 @@ public class Projectile extends Entity {
 	protected double x,y;
 	protected double nx,ny;
 	protected double distance;
-	protected double speed, rateOfFire, range, damage;
+	protected double speed, range, damage;
 	
 	
 	public Projectile(int x, int y, double dir) {

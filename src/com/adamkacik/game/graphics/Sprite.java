@@ -42,7 +42,10 @@ public class Sprite {
 	
 	public static Sprite projectile_wizard = new Sprite(16,0,0,SpriteSheet.projectile_wizard);
 	
-	
+	// bird animation
+	public static Sprite bird_1 = new Sprite(16,4,0,SpriteSheet.tiles);
+	public static Sprite bird_2 = new Sprite(16,4,1,SpriteSheet.tiles);
+	public static Sprite bird_3 = new Sprite(16,4,2,SpriteSheet.tiles);
 	
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
 		SIZE = size;
