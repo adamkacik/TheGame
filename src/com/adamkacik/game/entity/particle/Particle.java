@@ -13,13 +13,18 @@ public class Particle extends Entity{
 	private Sprite sprite;
 	
 	private int life;
+	protected double xa, ya, xx, yy;
 	
 	public Particle(int x, int y, int life) {
 		this.x = x;
 		this.y = y;
+		this.xx = x;
+		this.yy = y;
+		
 		this.life = life;
 		sprite = Sprite.particle_normal;
-		particles.add(this);
+		this.xa = random.nextGaussian();
+		this.ya = random.nextGaussian();
 		
 	}
 	
@@ -29,12 +34,14 @@ public class Particle extends Entity{
 			particles.add(new Particle(x,y,life));
 			
 		}
+		particles.add(this);
 	}
 	public void update() {
-		
+		this.xx += xa;
+		this.yy += ya;
 	}
 	public void render(Screen screen) {
-		
+		screen.renderSprite((int)xx, (int)yy, sprite, true);
 	}
 	
 	

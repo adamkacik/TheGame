@@ -39,8 +39,8 @@ public class Game extends Canvas implements Runnable {
 	private Keyboard key;
 	private Level level;
 	private Player player;
-	//private Bird bird;						//bird animation
-	//private Music music;					// music
+	// private Bird bird; //bird animation
+	// private Music music; // music
 	private boolean running = false;
 
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -54,26 +54,28 @@ public class Game extends Canvas implements Runnable {
 		frame = new JFrame();
 		key = new Keyboard();
 		level = Level.spawn;
-		TileCoordinate playerSpawn = new TileCoordinate(121,193);
-		player = new Player(playerSpawn.x()>>4,playerSpawn.y()>>4,key);		//place where player appears
+		TileCoordinate playerSpawn = new TileCoordinate(121, 193);
+		player = new Player(playerSpawn.x() >> 4, playerSpawn.y() >> 4, key); // place where player appears
 		player.init(level);
-		
-		
-		//music = new Music();			//music
-		//music.PlaySound();			//music
-		
+
+		// music = new Music(); //music
+		// music.PlaySound(); //music
+
 		frame.addKeyListener(key); // i must add prefix "frame." to work this
 		Mouse mouse = new Mouse();
 		addMouseListener(mouse);
 		addMouseMotionListener(mouse);
-		
+
 	}
+
 	public static int getWindowWidth() {
-		return width*scale;
+		return width * scale;
 	}
-	public static int  getWindowHeight() {
-		return height*scale;
+
+	public static int getWindowHeight() {
+		return height * scale;
 	}
+
 	public synchronized void start() {
 		running = true;
 		thread = new Thread(this, "Display");
@@ -96,12 +98,12 @@ public class Game extends Canvas implements Runnable {
 		double delta = 0;
 		int frames = 0;
 		int updates = 0;
-		frame.requestFocus();				// to focus when I press keys
+		frame.requestFocus(); // to focus when I press keys
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 
-			frame.requestFocus();			//when I press mouse button without this - game crash
+			frame.requestFocus(); // when I press mouse button without this - game crash
 			lastTime = now;
 			while (delta >= 1) {
 				update();
@@ -125,32 +127,23 @@ public class Game extends Canvas implements Runnable {
 		key.update();
 		player.update();
 		level.update();
-		
+
 	}
 
 	public void render() {
 		BufferStrategy bs = getBufferStrategy();
-		
+
 		if (bs == null) {
 			createBufferStrategy(3);
 			return;
 		}
 
 		screen.clear();
-		int xScroll = player.x - screen.width/2;		//middle of screen
-		int yScroll = player.y - screen.height/2;
+		int xScroll = player.x - screen.width / 2; // middle of screen
+		int yScroll = player.y - screen.height / 2;
 		level.render(xScroll, yScroll, screen);
 		player.render(screen);
-		
-		Sprite sprite = new Sprite(2,2,0xffffff);
-		Random random = new Random();
-		for (int i=0;i<100; i++) {
-			int x= random.nextInt(20);
-			int y= random.nextInt(20);
-			
-			screen.renderSprite(width-60+x, y+ 50, sprite, true);
-		}
-		
+
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
 		}
@@ -159,10 +152,11 @@ public class Game extends Canvas implements Runnable {
 
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.setColor(Color.WHITE);
-		g.setFont(new Font("Veranda",0,50));
-		g.drawString("X:  "+player.x+", Y: "+player.y,450,400);
-		if(Mouse.getButton()!=-1) g.drawString("Button:  "+Mouse.getButton(),100,120);
-		
+		g.setFont(new Font("Veranda", 0, 50));
+		g.drawString("X:  " + player.x + ", Y: " + player.y, 450, 400);
+		if (Mouse.getButton() != -1)
+			g.drawString("Button:  " + Mouse.getButton(), 100, 120);
+
 		g.dispose();
 		bs.show();
 	}

@@ -39,6 +39,10 @@ public class Sprite {
 	public static Sprite player_side_1 = new Sprite(16,2,2,SpriteSheet.tiles);
 	public static Sprite player_side_2 = new Sprite(16,2,3,SpriteSheet.tiles);
 	
+	//particles
+	public static Sprite particle_normal = new Sprite(3,0xaaaaaa);
+	
+	
 	// projectiles sprite here
 	
 	public static Sprite projectile_wizard = new Sprite(16,0,0,SpriteSheet.projectile_wizard);

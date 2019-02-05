@@ -1,5 +1,6 @@
 package com.adamkacik.game.entity.projectile;
 
+import com.adamkacik.game.entity.particle.Particle;
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.graphics.Sprite;
 
@@ -19,7 +20,11 @@ public class WizardProjectile extends Projectile {
 		ny = speed*Math.sin(angle);
 	}
 	public void update() {
-		if(level.tileCollision(x, y, nx, ny, 7)) remove();
+		if(level.tileCollision(x, y, nx, ny, 7)) { 
+			Particle p = new Particle((int)x,(int)y,50,500);
+			level.add(p);
+			remove();
+		}
 		move();
 	}
 	

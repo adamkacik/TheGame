@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.adamkacik.game.entity.Entity;
+import com.adamkacik.game.entity.particle.Particle;
 import com.adamkacik.game.entity.projectile.Projectile;
 import com.adamkacik.game.entity.projectile.WizardProjectile;
 import com.adamkacik.game.graphics.Sprite;
