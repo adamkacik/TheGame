@@ -42,7 +42,7 @@ public abstract class Mob extends Entity{
 	protected void shoot(int x, int y, double dir) {
 		Projectile p = new WizardProjectile(x,y,  dir);
 		//projectiles.add(p);
-		level.addProjectile(p);
+		level.add(p);
 	}
 	private boolean collision(int xa,int ya) {
 		boolean solid=false;

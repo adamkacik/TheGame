@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 import com.adamkacik.game.entity.Entity;
+import com.adamkacik.game.entity.particle.Particle;
 import com.adamkacik.game.entity.projectile.Projectile;
+import com.adamkacik.game.entity.spawner.Spawner;
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.level.tile.Tile;
 
@@ -19,6 +21,7 @@ public class Level {
 	
 	private List<Entity> entities = new ArrayList<Entity>();
 	private List<Projectile> projectiles = new ArrayList<Projectile>();
+	private List<Particle> particles = new ArrayList<Particle>();
 	
 	public static Level spawn = new SpawnLevel("/sheet/spawn_level.png");
 
@@ -35,6 +38,7 @@ public class Level {
 	public Level(String path) {
 		loadLevel(path);
 		generateLevel();
+		//add(new Spawner(121, 193, Spawner.Type.PARTICLE, 50, this));
 	}
 
 	protected void generateLevel() { // add this class from RandomLevel.java
@@ -43,6 +47,7 @@ public class Level {
 		// tiles[x+y*width] = random.nextInt(4); //generate 0-3
 		// }
 		// }
+		
 	}
 
 	protected void loadLevel(String path) {
@@ -56,6 +61,10 @@ public class Level {
 		for (int i=0;i<projectiles.size();i++){
 			projectiles.get(i).update();
 		}
+		for (int i=0;i<particles.size();i++){
+			particles.get(i).update();
+		}
+		
 	}
 
 	public List<Projectile> getProjectiles(){
@@ -96,14 +105,26 @@ public class Level {
 		for (int i=0;i<projectiles.size();i++){
 			projectiles.get(i).render(screen);
 		}
+		for (int i=0;i<particles.size();i++){
+			particles.get(i).render(screen);
+		}
 	}
 	public void add(Entity e) {
-		entities.add(e);
+		e.init(this);
+		if (e instanceof Particle) {
+			particles.add((Particle)e);
+		}else if (e instanceof Projectile) {
+			projectiles.add((Projectile)e);
+		}else {
+			entities.add(e);
+		}
+		
+		
 	}
-	public void addProjectile(Projectile p) {
+	/*public void addProjectile(Projectile p) {
 		p.init(this);
 		projectiles.add(p);
-	}
+	}*/
 		// Grass = 0xFF00
 		// Flower = 0xFFFF00
 		// Stone = 0x7F7F00

@@ -18,7 +18,7 @@ public class WizardProjectile extends Projectile {
 		sprite = Sprite.projectile_wizard;
 		nx = speed*Math.cos(angle);
 		ny = speed*Math.sin(angle);
-	}
+	} 
 	public void update() {
 		if(level.tileCollision(x, y, nx, ny, 7)) { 
 			Particle p = new Particle((int)x,(int)y,50,500);
