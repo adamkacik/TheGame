@@ -1,6 +1,8 @@
 package com.adamkacik.game.entity.projectile;
 
 import com.adamkacik.game.entity.particle.Particle;
+import com.adamkacik.game.entity.spawner.ParticleSpawner;
+import com.adamkacik.game.entity.spawner.Spawner;
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.graphics.Sprite;
 
@@ -21,8 +23,9 @@ public class WizardProjectile extends Projectile {
 	} 
 	public void update() {
 		if(level.tileCollision(x, y, nx, ny, 7)) { 
-			Particle p = new Particle((int)x,(int)y,50,500);
-			level.add(p);
+			//Particle p = new Particle((int)x,(int)y,50,500);
+			//level.add(p);
+			level.add(new ParticleSpawner((int)x, (int)y, 44, 50, level)); //relocated level line 41
 			remove();
 		}
 		move();
