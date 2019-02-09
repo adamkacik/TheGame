@@ -22,7 +22,7 @@ public class WizardProjectile extends Projectile {
 		ny = speed*Math.sin(angle);
 	} 
 	public void update() {
-		if(level.tileCollision(x, y, nx, ny, 7)) { 
+		if(level.tileCollision((int)(x+nx), (int)(y+ny),  5, 6, 6)) { //5 is height/weight particles
 			//Particle p = new Particle((int)x,(int)y,50,500);
 			//level.add(p);
 			level.add(new ParticleSpawner((int)x, (int)y, 44, 50, level)); //relocated level line 41
