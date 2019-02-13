@@ -7,8 +7,10 @@ import javax.swing.JFrame;
 import com.adamkacik.game.Game;
 import com.adamkacik.game.entity.projectile.Projectile;
 import com.adamkacik.game.entity.projectile.WizardProjectile;
+import com.adamkacik.game.graphics.AnimatedSprite;
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.graphics.Sprite;
+import com.adamkacik.game.graphics.SpriteSheet;
 import com.adamkacik.game.input.Keyboard;
 import com.adamkacik.game.input.Mouse;
 import com.adamkacik.game.level.Level;
@@ -19,7 +21,7 @@ public class Player extends Mob {
 	private Sprite sprite;
 	private int anim = 0;
 	private boolean walking = false;
-
+	private AnimatedSprite test = new AnimatedSprite(SpriteSheet.player_down, 16,16,3);
 	
 	private int fireRate = 0;
 	
@@ -39,7 +41,7 @@ public class Player extends Mob {
 	}
 
 	public void update() {
-		
+		test.update();
 		if(WizardProjectile.FIRE_RATE>0) fireRate--;
 		int xa = 0, ya = 0;
 
@@ -143,7 +145,7 @@ public class Player extends Mob {
 			flip = 1;
 
 		}
-
+		sprite = test.getSprite();
 		screen.renderPlayer(x, y, sprite, flip);
 	}
 
