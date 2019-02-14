@@ -21,7 +21,12 @@ public class Player extends Mob {
 	private Sprite sprite;
 	private int anim = 0;
 	private boolean walking = false;
-	private AnimatedSprite test = new AnimatedSprite(SpriteSheet.player_down, 16,16,3);
+	private AnimatedSprite down = new AnimatedSprite(SpriteSheet.player_down, 16,16,3);
+	private AnimatedSprite up = new AnimatedSprite(SpriteSheet.player_up, 16,16,3);
+	private AnimatedSprite left = new AnimatedSprite(SpriteSheet.player_left, 16,16,3);
+	private AnimatedSprite right = new AnimatedSprite(SpriteSheet.player_right, 16,16,3);
+	
+	private AnimatedSprite animSprite = down;
 	
 	private int fireRate = 0;
 	
@@ -29,7 +34,7 @@ public class Player extends Mob {
 	public Player(Keyboard input) {
 		this.input = input;
 		sprite = Sprite.player_forward;
-
+		animSprite = down;
 	}
 
 	public Player(int x, int y, Keyboard input) {
@@ -41,7 +46,8 @@ public class Player extends Mob {
 	}
 
 	public void update() {
-		test.update();
+		if(walking) animSprite.update();
+		else animSprite.setFrame(0);
 		if(WizardProjectile.FIRE_RATE>0) fireRate--;
 		int xa = 0, ya = 0;
 
@@ -49,15 +55,22 @@ public class Player extends Mob {
 			anim++; // condition if prevents to big number
 		else
 			anim = 0; // reset the number anim
-		if (input.up)
+		if (input.up) {
+			animSprite=up;
 			ya--;
-		if (input.down)
+		}
+		if (input.down) {
+			animSprite = down;
 			ya++;
-		if (input.left)
+		}
+		if (input.left) {
+			animSprite = left;
 			xa--;
-		if (input.right)
+		}
+		if (input.right) {
+			animSprite = right;
 			xa++;
-
+		}
 		if (xa != 0 || ya != 0) {
 			move(xa, ya);
 			walking = true;
@@ -145,7 +158,7 @@ public class Player extends Mob {
 			flip = 1;
 
 		}
-		sprite = test.getSprite();
+		sprite = animSprite.getSprite();
 		screen.renderPlayer(x, y, sprite, flip);
 	}
 

@@ -18,6 +18,9 @@ public class SpriteSheet {
 
 	public static SpriteSheet player = new SpriteSheet("/sheet/character_1.png", 48);
 	public static SpriteSheet player_down = new SpriteSheet(player, 0, 0, 1, 3, 16);
+	public static SpriteSheet player_up = new SpriteSheet(player, 1, 0, 1, 3, 16);
+	public static SpriteSheet player_left = new SpriteSheet(player, 2, 0, 1, 3, 16);
+	public static SpriteSheet player_right = new SpriteSheet(player, 2, 0, 1, 3, 16);
 
 	public Sprite[] sprites;
 
