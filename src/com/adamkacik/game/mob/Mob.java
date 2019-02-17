@@ -7,6 +7,7 @@ import com.adamkacik.game.entity.Entity;
 import com.adamkacik.game.entity.particle.Particle;
 import com.adamkacik.game.entity.projectile.Projectile;
 import com.adamkacik.game.entity.projectile.WizardProjectile;
+import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.graphics.Sprite;
 
 public abstract class Mob extends Entity{
@@ -35,9 +36,9 @@ public abstract class Mob extends Entity{
 		y+=ya;
 		}
 	}
-	public void update() {
-		
-	}
+	public abstract void update();	
+	
+	public abstract void render(Screen screen);
 	
 	protected void shoot(int x, int y, double dir) {
 		Projectile p = new WizardProjectile(x,y,  dir);
@@ -54,8 +55,6 @@ public abstract class Mob extends Entity{
 		}
 		return solid;
 	}
+	//public abstract void render();
 	
-	public void render() {
-		
-	}
 }

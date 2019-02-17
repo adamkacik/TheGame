@@ -101,7 +101,7 @@ public class Screen {
 		}
 	}
 
-	public void renderPlayer(int xp, int yp, Sprite sprite, int flip) { // flip is change right to left side
+	public void renderMob(int xp, int yp, Sprite sprite, int flip) { // flip is change right to left side
 		xp -= xOffset;
 		yp -= yOffset;
 		for (int y = 0; y < 16; y++) { // because our hero have 16 pixels

@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import com.adamkacik.game.level.tile.Tile;
+import com.adamkacik.game.mob.Dummy;
 
 public class SpawnLevel extends Level {
 
@@ -28,6 +29,7 @@ public class SpawnLevel extends Level {
 			e.printStackTrace();
 			System.out.println("Exception!! Could not load level file!!");
 		}
+		add(new Dummy(121,170));
 	}
 
 	// Grass = 0xFF00
