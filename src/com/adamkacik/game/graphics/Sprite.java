@@ -38,10 +38,10 @@ public class Sprite {
 	public static Sprite player_back_2 = new Sprite(16,1,3,SpriteSheet.tiles);
 	public static Sprite player_side_1 = new Sprite(16,2,2,SpriteSheet.tiles);
 	public static Sprite player_side_2 = new Sprite(16,2,3,SpriteSheet.tiles);
+	public static Sprite dummy = new Sprite(16,0,0,SpriteSheet.dummy_down); 
 	
 	//particles
 	public static Sprite particle_normal = new Sprite(3,0xaaaaaa);
-	
 	
 	// projectiles sprite here
 	
@@ -106,9 +106,9 @@ public class Sprite {
 	
 	
 	private void load() {
-		for (int y=0; y<SIZE; y++){
-			for(int x=0;x<SIZE;x++) {
-				pixels[x+y*SIZE]=sheet.pixels[(x+this.x)+(y+this.y)*sheet.SIZE];
+		for (int y=0; y<height; y++){
+			for(int x=0;x<width;x++) {
+				pixels[x+y*width]=sheet.pixels[(x+this.x)+(y+this.y)*sheet.WIDTH];
 			}
 		}
 	}

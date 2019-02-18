@@ -10,14 +10,21 @@ import com.adamkacik.game.entity.projectile.WizardProjectile;
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.graphics.Sprite;
 
+
 public abstract class Mob extends Entity{
 		
 	protected Sprite sprite;
-	protected int dir = 0;
+	
 	protected boolean moving = false;
 	protected boolean walking = false;
 
 	//protected List<Projectile> projectiles = new ArrayList<Projectile>();
+	protected enum Direction{
+		UP, DOWN, LEFT, RIGHT
+	}
+	
+	protected Direction dir; 
+	
 	
 	public void move(int xa, int ya) {
 		if (xa!=0 && ya!=0) {
@@ -26,10 +33,10 @@ public abstract class Mob extends Entity{
 			return;
 		}
 		
-		if (xa>0) dir = 1; 	//right
-		if (xa<0) dir = 3;	//left
-		if (ya>0) dir = 2; 	//down
-		if (ya<0) dir=0;	//up
+		if (xa>0) dir = Direction.RIGHT; 	//right
+		if (xa<0) dir = Direction.LEFT;	//left
+		if (ya>0) dir = Direction.DOWN; 	//down
+		if (ya<0) dir=Direction.UP;	//up
 		
 		if(!collision(xa, ya)) {
 		x+=xa;
