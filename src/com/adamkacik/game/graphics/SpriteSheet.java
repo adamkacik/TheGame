@@ -25,8 +25,8 @@ public class SpriteSheet {
 	public static SpriteSheet dummy = new SpriteSheet("/sheet/NPC_1.png", 64, 48);
 	public static SpriteSheet dummy_down = new SpriteSheet(dummy, 0, 0, 1, 3, 16);
 	public static SpriteSheet dummy_up = new SpriteSheet(dummy, 1, 0, 1, 3, 16);
-	public static SpriteSheet dummy_left = new SpriteSheet(dummy, 2, 0, 1, 3, 16);
-	public static SpriteSheet dummy_right = new SpriteSheet(dummy, 3, 0, 1, 3, 16);
+	public static SpriteSheet dummy_left = new SpriteSheet(dummy, 3, 0, 1, 3, 16);
+	public static SpriteSheet dummy_right = new SpriteSheet(dummy, 2, 0, 1, 3, 16);
 	
 	public Sprite[] sprites;
 
