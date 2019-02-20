@@ -9,7 +9,7 @@ import com.adamkacik.game.level.Level;
 public class Entity {
 	
 		public int x,y;
-		private Sprite sprite;
+		protected Sprite sprite;
 		public boolean removed = false;
 		protected Level level;
 		protected final Random random = new Random();
@@ -33,6 +33,9 @@ public class Entity {
 		public void remove() {
 			
 			removed = true;
+		}
+		public Sprite getSprite() {
+			return sprite;
 		}
 		public boolean isRemoved() {
 			return removed;

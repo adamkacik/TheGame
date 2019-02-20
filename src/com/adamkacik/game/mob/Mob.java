@@ -13,7 +13,7 @@ import com.adamkacik.game.graphics.Sprite;
 
 public abstract class Mob extends Entity{
 		
-	protected Sprite sprite;
+	//protected Sprite sprite;
 	
 	protected boolean moving = false;
 	protected boolean walking = false;
@@ -24,6 +24,7 @@ public abstract class Mob extends Entity{
 	}
 	
 	protected Direction dir; 
+	
 	
 	
 	public void move(int xa, int ya) {

@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import com.adamkacik.game.level.tile.Tile;
+import com.adamkacik.game.mob.Chaser;
 import com.adamkacik.game.mob.Dummy;
 
 public class SpawnLevel extends Level {
@@ -31,7 +32,9 @@ public class SpawnLevel extends Level {
 		}
 		for (int i=0; i<2; i++) {
 			add(new Dummy(191+i*20,170-i*13));
+			
 		}
+		add(new Chaser(230,170));
 	}
 
 	// Grass = 0xFF00

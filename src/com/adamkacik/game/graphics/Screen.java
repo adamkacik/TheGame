@@ -4,6 +4,8 @@ import java.util.Random;
 
 import com.adamkacik.game.entity.projectile.Projectile;
 import com.adamkacik.game.level.tile.Tile;
+import com.adamkacik.game.mob.Chaser;
+import com.adamkacik.game.mob.Mob;
 import com.adamkacik.game.mob.Player;
 
 public class Screen {
@@ -121,6 +123,28 @@ public class Screen {
 				if (xa < 0)
 					xa = 0;
 				int col = sprite.pixels[xs + ys * 16];
+				if (col != 0xffff00ff) // +2 extra ff at the begining because RGB
+					pixels[xa + ya * width] = col;
+			}
+
+		}
+	}
+	
+	public void renderMob(int xp, int yp, Mob mob) { // flip is change right to left side
+		xp -= xOffset;
+		yp -= yOffset;
+		for (int y = 0; y < 16; y++) { // because our hero have 16 pixels
+			int ya = y + yp;
+			int ys = y;
+			for (int x = 0; x < 16; x++) {
+				int xa = x + xp;
+				int xs = x;
+				if (xa < -16 || xa >= width || ya < 0 || ya >= height)
+					break;
+				if (xa < 0)
+					xa = 0;
+				int col = mob.getSprite().pixels[xs + ys * 16];
+				if((mob instanceof Chaser) && col == 0xff42967F ) col = 0xffBA0015; // different colour for chaser
 				if (col != 0xffff00ff) // +2 extra ff at the begining because RGB
 					pixels[xa + ya * width] = col;
 			}
