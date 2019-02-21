@@ -8,7 +8,7 @@ import com.adamkacik.game.level.Level;
 
 public class Entity {
 	
-		public int x,y;
+		protected int x,y;
 		protected Sprite sprite;
 		public boolean removed = false;
 		protected Level level;
@@ -29,7 +29,12 @@ public class Entity {
 		public void render(Screen screen) {
 			if (sprite != null) screen.renderSprite(x, y, sprite, true);
 		}
-		
+		public int getX() {
+			return y;
+		}
+		public int getY() {
+			return y;
+		}
 		public void remove() {
 			
 			removed = true;

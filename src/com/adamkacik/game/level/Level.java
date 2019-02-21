@@ -10,6 +10,7 @@ import com.adamkacik.game.entity.projectile.Projectile;
 import com.adamkacik.game.entity.spawner.Spawner;
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.level.tile.Tile;
+import com.adamkacik.game.mob.Player;
 
 public class Level {
 
@@ -22,6 +23,7 @@ public class Level {
 	private List<Entity> entities = new ArrayList<Entity>();
 	private List<Projectile> projectiles = new ArrayList<Projectile>();
 	private List<Particle> particles = new ArrayList<Particle>();
+	private List<Player> players = new ArrayList<Player>();
 	
 	public static Level spawn = new SpawnLevel("/sheet/spawn_level.png");
 
@@ -64,6 +66,9 @@ public class Level {
 		for (int i=0;i<particles.size();i++){
 			particles.get(i).update();
 		}
+		for (int i=0;i<players.size();i++){
+			players.get(i).update();
+		}
 		remove();
 	}
 
@@ -75,6 +80,10 @@ public class Level {
 			if (projectiles.get(i).isRemoved()) projectiles.remove(i);		}
 		for (int i=0;i<particles.size();i++){
 			if (particles.get(i).isRemoved()) particles.remove(i);		}
+		for (int i=0;i<players.size();i++){
+			if (players.get(i).isRemoved()) players.remove(i);		}
+	
+	
 	}
 	public List<Projectile> getProjectiles(){
 		return projectiles;
@@ -117,6 +126,9 @@ public class Level {
 		for (int i=0;i<particles.size();i++){
 			particles.get(i).render(screen);
 		}
+		for (int i=0;i<players.size();i++){
+			players.get(i).render(screen);
+		}
 	}
 	public void add(Entity e) {
 		e.init(this);
@@ -124,7 +136,10 @@ public class Level {
 			particles.add((Particle)e);
 		}else if (e instanceof Projectile) {
 			projectiles.add((Projectile)e);
-		}else {
+		}else if (e instanceof Player) {
+			players.add((Player)e);
+		}
+		else {
 			entities.add(e);
 		}
 		
@@ -134,6 +149,15 @@ public class Level {
 		p.init(this);
 		projectiles.add(p);
 	}*/
+	public List<Player> getPlayers() {
+		return players;
+	}
+	public Player getPlayerAt(int index) {
+		return players.get(index);
+	}
+	public Player getClientPlayer() {
+		return players.get(0);
+	}
 		// Grass = 0xFF00
 		// Flower = 0xFFFF00
 		// Stone = 0x7F7F00

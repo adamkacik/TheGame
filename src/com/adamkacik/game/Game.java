@@ -55,10 +55,10 @@ public class Game extends Canvas implements Runnable {
 		frame = new JFrame();
 		key = new Keyboard();
 		level = Level.spawn;
-		TileCoordinate playerSpawn = new TileCoordinate(121, 193);
+		TileCoordinate playerSpawn = new TileCoordinate(121, 183);
 		player = new Player(playerSpawn.x() >> 4, playerSpawn.y() >> 4, key); // place where player appears
-		player.init(level);
-
+		//player.init(level);
+		level.add(player);
 		// music = new Music(); //music
 		// music.PlaySound(); //music
 
@@ -126,7 +126,7 @@ public class Game extends Canvas implements Runnable {
 
 	public void update() {
 		key.update();
-		player.update();
+		//player.update();
 		level.update();
 
 	}
@@ -140,10 +140,10 @@ public class Game extends Canvas implements Runnable {
 		}
 
 		screen.clear();
-		int xScroll = player.x - screen.width / 2; // middle of screen
-		int yScroll = player.y - screen.height / 2;
+		int xScroll = player.getX() - screen.width / 2; // middle of screen
+		int yScroll = player.getY() - screen.height / 2;
 		level.render(xScroll, yScroll, screen);
-		player.render(screen);
+		//player.render(screen);
 		//screen.renderSheet(40, 40, SpriteSheet.player_down, false);
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
@@ -154,7 +154,7 @@ public class Game extends Canvas implements Runnable {
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Veranda", 0, 50));
-		g.drawString("X:  " + player.x + ", Y: " + player.y, 450, 400);
+		g.drawString("X:  " + player.getX() + ", Y: " + player.getY(), 450, 400);//HERE
 		if (Mouse.getButton() != -1)
 			g.drawString("Button:  " + Mouse.getButton(), 100, 120);
 
