@@ -34,9 +34,9 @@ public class SpawnLevel extends Level {
 			add(new Dummy(191+i*20,170-i*13));
 			
 		}
-		//for (int i=0; i<1;i++) {
-		//	add(new Chaser(230+i*30,170));
-		//}
+		for (int i=0; i<1;i++) {
+			add(new Chaser(230+i*30,170));
+		}
 	}
 
 	// Grass = 0xFF00

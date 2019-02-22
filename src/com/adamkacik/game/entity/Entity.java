@@ -30,13 +30,12 @@ public class Entity {
 			if (sprite != null) screen.renderSprite(x, y, sprite, true);
 		}
 		public int getX() {
-			return y;
+			return x;
 		}
 		public int getY() {
 			return y;
 		}
 		public void remove() {
-			
 			removed = true;
 		}
 		public Sprite getSprite() {
