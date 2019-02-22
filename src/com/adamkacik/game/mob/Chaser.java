@@ -1,5 +1,7 @@
 package com.adamkacik.game.mob;
 
+import java.util.List;
+
 import com.adamkacik.game.graphics.AnimatedSprite;
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.graphics.Sprite;
@@ -26,15 +28,15 @@ public class Chaser extends Mob{
 	public void move() {
 		xa =0;
 		ya =0;
-		Player player = level.getClientPlayer();
+		List<Player> players = level.getPlayers(this, 50);
+		if(players.size()>0){
+		Player player = players.get(0);
+		
 		if(x < player.getX()) xa++;
 		if(x > player.getX()) xa--;
 		if(y < player.getY()) ya++;
 		if(y > player.getY()) ya--;
-		
-		
-			
-			
+		}			
 		if (xa != 0 || ya != 0) {
 			move(xa, ya);
 			walking = true;

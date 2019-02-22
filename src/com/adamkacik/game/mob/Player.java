@@ -1,10 +1,12 @@
 package com.adamkacik.game.mob;
 
 import java.awt.Dimension;
+import java.util.List;
 
 import javax.swing.JFrame;
 
 import com.adamkacik.game.Game;
+import com.adamkacik.game.entity.Entity;
 import com.adamkacik.game.entity.projectile.Projectile;
 import com.adamkacik.game.entity.projectile.WizardProjectile;
 import com.adamkacik.game.graphics.AnimatedSprite;
@@ -46,6 +48,7 @@ public class Player extends Mob {
 	}
 
 	public void update() {
+		
 		if(walking) animSprite.update();
 		else animSprite.setFrame(0);
 		if(WizardProjectile.FIRE_RATE>0) fireRate--;
