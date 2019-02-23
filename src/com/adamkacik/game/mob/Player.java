@@ -52,27 +52,27 @@ public class Player extends Mob {
 		if(walking) animSprite.update();
 		else animSprite.setFrame(0);
 		if(WizardProjectile.FIRE_RATE>0) fireRate--;
-		int xa = 0, ya = 0;
-
+		double xa = 0, ya = 0;
+		double speed = 1;
 		if (anim < 7500)
 			anim++; // condition if prevents to big number
 		else
 			anim = 0; // reset the number anim
 		if (input.up) {
 			animSprite=up;
-			ya-=2;
+			ya-=speed;
 		}
 		if (input.down) {
 			animSprite = down;
-			ya+=2;
+			ya+=speed;
 		}
 		if (input.left) {
 			animSprite = left;
-			xa-=2;
+			xa-=speed;
 		}
 		if (input.right) {
 			animSprite = right;
-			xa+=2;
+			xa+=speed;
 		}
 		if (xa != 0 || ya != 0) {
 			move(xa, ya);
@@ -122,7 +122,7 @@ public class Player extends Mob {
 		else flip = 0;
 		
 		sprite = animSprite.getSprite();
-		screen.renderMob(x, y, sprite, flip);
+		screen.renderMob((int)x, (int)y, sprite, flip);
 	}
 
 	

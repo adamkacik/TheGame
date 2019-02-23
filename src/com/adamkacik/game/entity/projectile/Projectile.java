@@ -5,7 +5,7 @@ import com.adamkacik.game.graphics.Sprite;
 
 public class Projectile extends Entity {
 	
-	protected int xOrigin, yOrigin;
+	protected double xOrigin, yOrigin;
 	protected double angle;
 	protected Sprite sprite;
 	protected double x,y;
@@ -14,7 +14,7 @@ public class Projectile extends Entity {
 	protected double speed, range, damage;
 	
 	
-	public Projectile(int x, int y, double dir) {
+	public Projectile(double x, double y, double dir) {
 		xOrigin = x;
 		yOrigin = y;
 		angle = dir;
