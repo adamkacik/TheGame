@@ -60,19 +60,19 @@ public class Player extends Mob {
 			anim = 0; // reset the number anim
 		if (input.up) {
 			animSprite=up;
-			ya--;
+			ya-=2;
 		}
 		if (input.down) {
 			animSprite = down;
-			ya++;
+			ya+=2;
 		}
 		if (input.left) {
 			animSprite = left;
-			xa--;
+			xa-=2;
 		}
 		if (input.right) {
 			animSprite = right;
-			xa++;
+			xa+=2;
 		}
 		if (xa != 0 || ya != 0) {
 			move(xa, ya);
