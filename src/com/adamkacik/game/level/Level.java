@@ -12,7 +12,7 @@ import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.level.tile.Tile;
 import com.adamkacik.game.mob.Player;
 
-public class Level {
+public class   {
 
 	// protected Tile[] tiles;
 	protected int width, height;
