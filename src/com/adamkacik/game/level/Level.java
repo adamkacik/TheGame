@@ -1,6 +1,8 @@
 package com.adamkacik.game.level;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -11,8 +13,9 @@ import com.adamkacik.game.entity.spawner.Spawner;
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.level.tile.Tile;
 import com.adamkacik.game.mob.Player;
+import com.adamkacik.game.util.Vector2i;
 
-public class   {
+public class Level {
 
 	// protected Tile[] tiles;
 	protected int width, height;
@@ -173,7 +176,7 @@ public class   {
 	}
 
 	public List<Node> findPath(Vector2i start, Vector2i goal){
-		List<Node> openList = new ArrayList<node>();
+		List<Node> openList = new ArrayList<Node>();
 		List<Node> closedList = new ArrayList<Node>();
 		Node current = new Node(start, null, 0,getDistance(start,goal));
 		openList.add(current);
@@ -205,7 +208,7 @@ public class   {
 				double gCost = current.gCost + getDistance(current.tile, a);
 				double hCost = getDistance(a, goal);
 				Node node = new Node(a, current, gCost, hCost);
-				if((vecInList(closedList, a) && gCost) >= node.gCost) continue;
+				//if(((vecInList(closedList, a)) && gCost) >= node.gCost) continue; // must repair some
 				if(!vecInList(openList, a) || gCost <node.gCost) openList.add(node);
 			}
 		}

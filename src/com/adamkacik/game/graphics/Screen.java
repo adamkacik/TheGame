@@ -7,6 +7,7 @@ import com.adamkacik.game.level.tile.Tile;
 import com.adamkacik.game.mob.Chaser;
 import com.adamkacik.game.mob.Mob;
 import com.adamkacik.game.mob.Player;
+import com.adamkacik.game.mob.Star;
 
 public class Screen {
 
@@ -145,6 +146,7 @@ public class Screen {
 					xa = 0;
 				int col = mob.getSprite().pixels[xs + ys * 16];
 				if((mob instanceof Chaser) && col == 0xff42967F ) col = 0xffBA0015; // different colour for chaser
+				if((mob instanceof Star) && col == 0xff42967F) col = 0xffE8E83A; 
 				if (col != 0xffff00ff) // +2 extra ff at the begining because RGB
 					pixels[xa + ya * width] = col;
 			}

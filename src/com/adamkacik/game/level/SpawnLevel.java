@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import com.adamkacik.game.level.tile.Tile;
 import com.adamkacik.game.mob.Chaser;
 import com.adamkacik.game.mob.Dummy;
+import com.adamkacik.game.mob.Star;
 
 public class SpawnLevel extends Level {
 
@@ -37,6 +38,7 @@ public class SpawnLevel extends Level {
 		for (int i=0; i<1;i++) {
 			add(new Chaser(230+i*30,170));
 		}
+		add (new Star(230, 190));
 	}
 
 	// Grass = 0xFF00
