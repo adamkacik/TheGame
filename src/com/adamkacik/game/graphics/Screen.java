@@ -11,6 +11,7 @@ import com.adamkacik.game.mob.Star;
 
 public class Screen {
 
+	public int x,y;
 	public int width;
 	public int height;
 	public int[] pixels;
@@ -131,24 +132,24 @@ public class Screen {
 		}
 	}
 	
-	public void renderMob(int xp, int yp, Mob mob) { // flip is change right to left side
-		xp -= xOffset;
-		yp -= yOffset;
+	public void renderMob(int x2, int y2, Mob mob) { // flip is change right to left side
+		x2 -= xOffset;
+		y2 -= yOffset;
 		for (int y = 0; y < 16; y++) { // because our hero have 16 pixels
-			int ya = y + yp;
+			int ya = y + y2;
 			int ys = y;
 			for (int x = 0; x < 16; x++) {
-				int xa = x + xp;
+				int xa = x + x2;
 				int xs = x;
 				if (xa < -16 || xa >= width || ya < 0 || ya >= height)
 					break;
 				if (xa < 0)
 					xa = 0;
-				int col = mob.getSprite().pixels[xs + ys * 16];
+				int col = mob.getSprite().pixels[(int)xs + (int)ys * 16];
 				if((mob instanceof Chaser) && col == 0xff42967F ) col = 0xffBA0015; // different colour for chaser
 				if((mob instanceof Star) && col == 0xff42967F) col = 0xffE8E83A; 
 				if (col != 0xffff00ff) // +2 extra ff at the begining because RGB
-					pixels[xa + ya * width] = col;
+					pixels[(int)xa + (int)ya * width] = col;
 			}
 
 		}

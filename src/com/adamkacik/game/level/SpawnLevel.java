@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import com.adamkacik.game.level.tile.Tile;
 import com.adamkacik.game.mob.Chaser;
 import com.adamkacik.game.mob.Dummy;
+import com.adamkacik.game.mob.Shooter;
 import com.adamkacik.game.mob.Star;
 
 public class SpawnLevel extends Level {
@@ -32,13 +33,14 @@ public class SpawnLevel extends Level {
 			System.out.println("Exception!! Could not load level file!!");
 		}
 		for (int i=0; i<2; i++) {
-			add(new Dummy(191+i*20,170-i*13));
+			//add(new Dummy(191+i*20,170-i*13));
 			
 		}
 		for (int i=0; i<1;i++) {
-			add(new Chaser(230+i*30,170));
+			//add(new Chaser(230+i*30,170));
 		}
-		add (new Star(230, 190));
+		//add (new Star(230, 190));
+		add(new Shooter(230,190));
 	}
 
 	// Grass = 0xFF00
