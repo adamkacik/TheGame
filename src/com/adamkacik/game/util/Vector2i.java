@@ -16,10 +16,12 @@ public class Vector2i { //i because integer
 		set(x,y);
 	}
 	
+	
 	public void set(int x, int y) {
 		this.x=x;
 		this.y=y;
 	}
+	
 	public void test() {
 		Vector2i player_position = new Vector2i(80,40).setX(15);
 		Vector2i mob_position = new Vector2i(player_position).setX(50);
@@ -52,6 +54,13 @@ public class Vector2i { //i because integer
 		this.y=y;
 		return this;
 	}
+	public static double getDistance(Vector2i v0, Vector2i v1) {
+		double distance =0;
+		double x = v0.getX() - v1.getX();
+		double y = v0.getY() - v1.getY();
+		return Math.sqrt(x*x+y*y);
+	}
+	
 	public boolean equals(Object object) {
 		if (!(object instanceof Vector2i)) return false;
 		Vector2i vec = (Vector2i) object;

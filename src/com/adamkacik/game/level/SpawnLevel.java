@@ -41,6 +41,7 @@ public class SpawnLevel extends Level {
 		}
 		//add (new Star(230, 190));
 		add(new Shooter(230,190));
+		add(new Dummy(210,170));
 	}
 
 	// Grass = 0xFF00
