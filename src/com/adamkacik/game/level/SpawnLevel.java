@@ -40,8 +40,10 @@ public class SpawnLevel extends Level {
 			//add(new Chaser(230+i*30,170));
 		}
 		//add (new Star(230, 190));
-		add(new Shooter(230,190));
-		add(new Dummy(210,170));
+		add(new Shooter(260,190));
+		add(new Shooter(230,160));
+		
+		//add(new Dummy(210,170));
 	}
 
 	// Grass = 0xFF00

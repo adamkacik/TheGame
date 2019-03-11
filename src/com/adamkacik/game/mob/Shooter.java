@@ -20,7 +20,7 @@ public class Shooter extends Mob{
 	private AnimatedSprite animSprite = down;
 	private int time =0;
 	private int xa = 0, ya = 0;
-	
+	private Entity rand  = null;
 	public Shooter(int x, int y) {
 		this.x=x;
 		this.y=y;
@@ -57,13 +57,33 @@ public class Shooter extends Mob{
 			dir = Direction.RIGHT;
 		}
 		if (xa != 0 || ya != 0) {
-			//move(xa, ya);
+			//move(xa, ya);a
 			walking = true;
 		} else {
 			walking = false;
 		}
-		
+		shootRandom();
+	}
 	
+	private void shootRandom() {
+		if(time % (60+ random.nextInt(61)) == 0) {
+		
+		List<Entity> entities = level.getEntities(this, 500);
+		entities.add(level.getClientPlayer());
+				
+		int index = random.nextInt(entities.size()); // entities.size() = 1 , should be (entities.size()-1) ??
+		
+		rand=entities.get(index);
+					
+		}
+		if(rand!=null) {
+		double dx = rand.getX()-x;
+		double dy = rand.getY()-y;
+		double dir = Math.atan2(dy, dx);
+		shoot(x,y, dir);
+		}
+	}
+		private void shootClosest() {
 		List<Entity> entities = level.getEntities(this, 50);
 		entities.add(level.getClientPlayer());
 		//Player p = ;
@@ -72,6 +92,7 @@ public class Shooter extends Mob{
 		for(int i=0;i<entities.size();i++) {
 			Entity e=entities.get(i);
 			double distance= Vector2i.getDistance(new Vector2i((int)x,(int)y),new Vector2i((int)e.getX(),(int)e.getY()));
+			
 			if(i==0 || distance<min) {
 				min = distance;
 				closest = e;

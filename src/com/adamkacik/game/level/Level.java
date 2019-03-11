@@ -9,6 +9,7 @@ import java.util.Random;
 import com.adamkacik.game.entity.Entity;
 import com.adamkacik.game.entity.particle.Particle;
 import com.adamkacik.game.entity.projectile.Projectile;
+import com.adamkacik.game.entity.spawner.ParticleSpawner;
 import com.adamkacik.game.entity.spawner.Spawner;
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.level.tile.Tile;
@@ -154,6 +155,7 @@ public class Level {
 			projectiles.add((Projectile) e);
 		} else if (e instanceof Player) {
 			players.add((Player) e);
+		} else if (e instanceof ParticleSpawner) {	//no shooting with walls etc
 		} else {
 			entities.add(e);
 		}
@@ -235,7 +237,7 @@ public class Level {
 		int ex = (int) e.getX();
 		int ey = (int) e.getY();
 		for (int i = 0; i < entities.size(); i++) {
-			Entity entity = entities.get(i);
+			Entity entity = entities.get(i);  //must change later, because shooting to particle wall
 			if(entity.equals(e)) continue;
 			int x = (int) entity.getX();
 			int y = (int) entity.getY();
