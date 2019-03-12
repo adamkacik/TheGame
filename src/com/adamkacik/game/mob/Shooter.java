@@ -8,6 +8,7 @@ import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.graphics.Sprite;
 import com.adamkacik.game.graphics.SpriteSheet;
 import com.adamkacik.game.mob.Mob.Direction;
+import com.adamkacik.game.util.Debug;
 import com.adamkacik.game.util.Vector2i;
 
 public class Shooter extends Mob{
@@ -107,6 +108,9 @@ public class Shooter extends Mob{
 	}
 	
 	public void render(Screen screen) {
+		 
+		sprite = animSprite.getSprite(); 
+		Debug.drawRect(screen, 17*16, 16*16, 100, 40, true);
 		screen.renderMob((int)x,(int)y,this);
 	}
 }
