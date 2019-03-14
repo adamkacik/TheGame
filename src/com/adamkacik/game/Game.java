@@ -3,7 +3,6 @@ package com.adamkacik.game;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -25,7 +24,7 @@ import com.adamkacik.game.level.TileCoordinate;
 import com.adamkacik.game.mob.Bird;
 import com.adamkacik.game.mob.Player;
 import com.adamkacik.game.music.Music;
-
+import com.adamkacik.game.graphics.Font;
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
@@ -152,12 +151,12 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		/*g.setFont(new Font("Veranda", 0, 50));
 		g.setColor(Color.WHITE);
-		g.setFont(new Font("Veranda", 0, 50));
 		g.drawString("X:  " + player.getX() + ", Y: " + player.getY(), 450, 400);//HERE
 		if (Mouse.getButton() != -1)
 			g.drawString("Button:  " + Mouse.getButton(), 100, 120);
-
+		*/
 		g.dispose();
 		bs.show();
 	}
@@ -174,6 +173,7 @@ public class Game extends Canvas implements Runnable {
 		game.frame.setVisible(true);
 
 		game.start();
-
+		Font font = new Font();
+		
 	}
 }
