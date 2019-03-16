@@ -12,6 +12,7 @@ import java.util.Random;
 
 import javax.swing.JFrame;
 
+import com.adamkacik.game.graphics.Font;
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.graphics.Sprite;
 import com.adamkacik.game.graphics.SpriteSheet;
@@ -24,7 +25,7 @@ import com.adamkacik.game.level.TileCoordinate;
 import com.adamkacik.game.mob.Bird;
 import com.adamkacik.game.mob.Player;
 import com.adamkacik.game.music.Music;
-import com.adamkacik.game.graphics.Font;
+
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
@@ -34,6 +35,7 @@ public class Game extends Canvas implements Runnable {
 	public static String title = "The Game";
 
 	private Screen screen;
+	private Font font;
 	private Thread thread;
 	private JFrame frame;
 	private Keyboard key;
@@ -58,6 +60,7 @@ public class Game extends Canvas implements Runnable {
 		player = new Player(playerSpawn.x() >>4, playerSpawn.y() >>4, key); // place where player appears
 		//player.init(level);
 		level.add(player);
+		font = new Font();
 		// music = new Music(); //music
 		// music.PlaySound(); //music
 
@@ -142,6 +145,7 @@ public class Game extends Canvas implements Runnable {
 		double xScroll = player.getX() - screen.width / 2; // middle of screen
 		double yScroll = player.getY() - screen.height / 2;
 		level.render((int)xScroll, (int)yScroll, screen);
+		font.render(screen);
 		//player.render(screen);
 		//screen.renderSheet(40, 40, SpriteSheet.player_down, false);
 		for (int i = 0; i < pixels.length; i++) {
@@ -173,7 +177,7 @@ public class Game extends Canvas implements Runnable {
 		game.frame.setVisible(true);
 
 		game.start();
-		Font font = new Font();
+		
 		
 	}
 }

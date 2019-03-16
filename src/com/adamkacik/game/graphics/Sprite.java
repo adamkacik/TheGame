@@ -86,7 +86,7 @@ public class Sprite {
 		setColor(color);
 	}
 	public static Sprite[] split(SpriteSheet sheet) {
-		int amount = ((sheet.getWidth() * sheet.getHeight())/ (sheet.SPRITE_WIDTH*sheet.SPRITE_WIDTH) )
+		int amount = ((sheet.getWidth() * sheet.getHeight())/ (sheet.SPRITE_WIDTH*sheet.SPRITE_HEIGHT));
 		
 		Sprite[] sprites = new Sprite[amount];
 		int current = 0;
@@ -100,11 +100,11 @@ public class Sprite {
 						int xo = x+xp*sheet.SPRITE_WIDTH;
 						int yo = y+yp*sheet.SPRITE_HEIGHT;
 						
-						pixels[x+y*sheet.SPRITE_WIDTH]=  sheet.getPixels()[xo+yo*sheet.getWidth()];
+						pixels[x+y*sheet.SPRITE_WIDTH]=  sheet.getPixels() [xo+yo*sheet.getWidth()];
 					}
 				}
-			sprites[current] = new Sprite(pixels, sheet.SPRITE_WIDTH, sheet.SPRITE_HEIGHT);
-			current++;
+			sprites[current++] = new Sprite(pixels, sheet.SPRITE_WIDTH, sheet.SPRITE_HEIGHT);
+			
 			}
 		}
 		return sprites;
