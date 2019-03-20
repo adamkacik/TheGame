@@ -107,6 +107,7 @@ public class SpriteSheet {
 
 			width = image.getWidth();
 			height = image.getHeight();
+			pixels = new int[width * height];
 			image.getRGB(0, 0, width, height, pixels, 0, width);
 		} catch (IOException e) {
 			e.printStackTrace();
