@@ -109,13 +109,26 @@ public class Sprite {
 		}
 		return sprites;
 	}
+	public Sprite(int[] pixels, int size) {
+		SIZE = width = height = size;
+		this.width = size;
+		this.height = size;
+		this.pixels = pixels;
+	}
+	
 	
 	public Sprite(int[] pixels, int width, int height) {
 		SIZE = (width == height) ? width : -1;
 		this.width = height;
 		this.height = height;
-		this.pixels = pixels;
+		this.pixels = new int[pixels.length];
+		//System.arraycopy(pixels, 0, this.pixels, 0, pixels.length);
+		for (int i=0; i<pixels.length; i++) {
+			this.pixels[i]=pixels[i];
+		}
+		
 	}
+	
 	private void setColor(int color) {
 		for(int i=0; i<width*height; i++) {
 			pixels[i] = color;
