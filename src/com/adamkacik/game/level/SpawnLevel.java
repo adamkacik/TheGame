@@ -33,13 +33,13 @@ public class SpawnLevel extends Level {
 			System.out.println("Exception!! Could not load level file!!");
 		}
 		for (int i=0; i<2; i++) {
-			//add(new Dummy(191+i*20,170-i*13));
+			add(new Dummy(191+i*20,170-i*13));
 			
 		}
 		for (int i=0; i<1;i++) {
-			//add(new Chaser(230+i*30,170));
+			add(new Chaser(230+i*30,170));
 		}
-		//add (new Star(230, 190));
+		add (new Star(230, 190));
 		add(new Shooter(260,190));
 		add(new Shooter(230,160));
 		
