@@ -17,7 +17,7 @@ public class WizardProjectile extends Projectile {
 		speed =3;
 		damage = 20;
 		
-		sprite = Sprite.projectile_wizard;
+		sprite = Sprite.projectile_arrow;
 		nx = speed*Math.cos(angle);
 		ny = speed*Math.sin(angle);
 	} 
@@ -49,6 +49,6 @@ public class WizardProjectile extends Projectile {
 		
 	}
 	public void render(Screen screen) {
-		screen.renderProjectile((int)x,(int)y,this);
+		screen.renderProjectile((int)x,(int)y,this, angle);
 	}
 }
