@@ -2,7 +2,7 @@ package com.adamkacik.game.util;
 
 public class Vector2i { //i because integer
 
-	private int x, y;
+	public int x, y;
 	
 	public Vector2i() {
 		set(0,0);

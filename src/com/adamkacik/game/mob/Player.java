@@ -13,9 +13,13 @@ import com.adamkacik.game.graphics.AnimatedSprite;
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.graphics.Sprite;
 import com.adamkacik.game.graphics.SpriteSheet;
+import com.adamkacik.game.graphics.ui.UILabel;
+import com.adamkacik.game.graphics.ui.UIManager;
+import com.adamkacik.game.graphics.ui.UIPanel;
 import com.adamkacik.game.input.Keyboard;
 import com.adamkacik.game.input.Mouse;
 import com.adamkacik.game.level.Level;
+import com.adamkacik.game.util.Vector2i;
 
 public class Player extends Mob {
 
@@ -32,10 +36,12 @@ public class Player extends Mob {
 	
 	private int fireRate = 0;
 	
+	private UIManager ui;
 	
 	public Player(Keyboard input) {
 		this.input = input;
 		sprite = Sprite.player_forward;
+		
 		
 	}
 
@@ -45,6 +51,11 @@ public class Player extends Mob {
 		this.input = input;
 		sprite = Sprite.player_forward;
 		fireRate = WizardProjectile.FIRE_RATE;
+		
+		ui = Game.getUiManager();
+		UIPanel panel = new UIPanel(new Vector2i(300-80,0));
+		ui.addPanel(panel);
+		panel.addComponent(new UILabel(new Vector2i(-10,2),"Hello"));
 	}
 
 	public void update() {

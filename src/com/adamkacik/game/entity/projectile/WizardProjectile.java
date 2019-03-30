@@ -21,12 +21,17 @@ public class WizardProjectile extends Projectile {
 		nx = speed*Math.cos(angle);
 		ny = speed*Math.sin(angle);
 	} 
+	private int time = 0;
 	public void update() {
 		if(level.tileCollision((int)(x+nx), (int)(y+ny),  5, 6, 6)) { //5 is height/weight particles
 			//Particle p = new Particle((int)x,(int)y,50,500);
 			//level.add(p);
 			level.add(new ParticleSpawner((int)x, (int)y, 44, 50, level)); //relocated level line 41
 			remove();
+		}
+		time++;
+		if(time%2 ==0) {
+			sprite = Sprite.rotate(sprite,  Math.PI/20.0);
 		}
 		move();
 	}

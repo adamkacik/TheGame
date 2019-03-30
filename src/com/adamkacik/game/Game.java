@@ -16,6 +16,7 @@ import com.adamkacik.game.graphics.Font;
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.graphics.Sprite;
 import com.adamkacik.game.graphics.SpriteSheet;
+import com.adamkacik.game.graphics.ui.UIManager;
 import com.adamkacik.game.input.Keyboard;
 import com.adamkacik.game.input.Mouse;
 import com.adamkacik.game.level.Level;
@@ -45,6 +46,9 @@ public class Game extends Canvas implements Runnable {
 	// private Music music; // music
 	private boolean running = false;
 
+	private static UIManager uiManager;
+	
+	
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 	private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 	int x, y;
@@ -53,6 +57,7 @@ public class Game extends Canvas implements Runnable {
 		Dimension size = new Dimension(width * scale, height * scale);
 		setPreferredSize(size);
 		screen = new Screen(width, height);
+		uiManager = new UIManager();
 		frame = new JFrame();
 		key = new Keyboard();
 		level = Level.spawn;
@@ -64,6 +69,8 @@ public class Game extends Canvas implements Runnable {
 		// music = new Music(); //music
 		// music.PlaySound(); //music
 
+		
+		
 		frame.addKeyListener(key); // i must add prefix "frame." to work this
 		Mouse mouse = new Mouse();
 		addMouseListener(mouse);
@@ -79,6 +86,10 @@ public class Game extends Canvas implements Runnable {
 		return height * scale;
 	}
 
+	public static UIManager getUiManager() {
+		return uiManager;
+	}
+	
 	public synchronized void start() {
 		running = true;
 		thread = new Thread(this, "Display");
@@ -130,6 +141,7 @@ public class Game extends Canvas implements Runnable {
 		key.update();
 		//player.update();
 		level.update();
+		uiManager.update();
 
 	}
 
@@ -145,6 +157,7 @@ public class Game extends Canvas implements Runnable {
 		double xScroll = player.getX() - screen.width / 2; // middle of screen
 		double yScroll = player.getY() - screen.height / 2;
 		level.render((int)xScroll, (int)yScroll, screen);
+		uiManager.render(screen);
 		//font.render(20,50,-5,0xffffff,"Hello darkness my\nold friends!",screen);
 		//player.render(screen);
 		//screen.renderSheet(40, 40, SpriteSheet.player_down, false);
