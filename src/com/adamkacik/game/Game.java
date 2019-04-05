@@ -157,7 +157,7 @@ public class Game extends Canvas implements Runnable {
 		double xScroll = player.getX() - screen.width / 2; // middle of screen
 		double yScroll = player.getY() - screen.height / 2;
 		level.render((int)xScroll, (int)yScroll, screen);
-		uiManager.render(screen);
+		
 		//font.render(20,50,-5,0xffffff,"Hello darkness my\nold friends!",screen);
 		//player.render(screen);
 		//screen.renderSheet(40, 40, SpriteSheet.player_down, false);
@@ -168,6 +168,7 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		uiManager.render(g);
 		/*g.setFont(new Font("Veranda", 0, 50));
 		g.setColor(Color.WHITE);
 		g.drawString("X:  " + player.getX() + ", Y: " + player.getY(), 450, 400);//HERE
