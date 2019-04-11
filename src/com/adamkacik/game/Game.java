@@ -30,7 +30,7 @@ import com.adamkacik.game.music.Music;
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-	private static int width = 300;
+	private static int width = 300-80;
 	private static int height = width / 16 * 9;
 	private static int scale = 3;
 	public static String title = "The Game";
@@ -54,7 +54,7 @@ public class Game extends Canvas implements Runnable {
 	int x, y;
 
 	public Game() {
-		Dimension size = new Dimension(width * scale, height * scale);
+		Dimension size = new Dimension(width * scale+80*3, height * scale);
 		setPreferredSize(size);
 		screen = new Screen(width, height);
 		uiManager = new UIManager();
@@ -62,7 +62,7 @@ public class Game extends Canvas implements Runnable {
 		key = new Keyboard();
 		level = Level.spawn;
 		TileCoordinate playerSpawn = new TileCoordinate(121, 183);
-		player = new Player(playerSpawn.x() >>4, playerSpawn.y() >>4, key); // place where player appears
+		player = new Player("PlayerName",playerSpawn.x() >>4, playerSpawn.y() >>4, key); // place where player appears
 		//player.init(level);
 		level.add(player);
 		font = new Font();
@@ -166,8 +166,9 @@ public class Game extends Canvas implements Runnable {
 		}
 
 		Graphics g = bs.getDrawGraphics();
-
-		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		g.setColor(new Color(0xff00ff));
+		g.fillRect(0, 0, getWidth(), getHeight());
+		g.drawImage(image, 0, 0, width * scale, height * scale ,null);
 		uiManager.render(g);
 		/*g.setFont(new Font("Veranda", 0, 50));
 		g.setColor(Color.WHITE);

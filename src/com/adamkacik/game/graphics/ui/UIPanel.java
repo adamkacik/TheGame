@@ -9,15 +9,16 @@ import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.graphics.Sprite;
 import com.adamkacik.game.util.Vector2i;
 
-public class UIPanel {
+public class UIPanel extends UIComponent{
 
 	private List<UIComponent> components = new ArrayList<UIComponent>();
-	private Vector2i position,size;
-	private Color color;
+	private Vector2i size;
+	
 	
 	private Sprite sprite;
 	
 	public UIPanel(Vector2i position, Vector2i size) {
+		super(position);
 		this.position = position;
 		this.size = size;
 		color = new Color(0xcacaca);
