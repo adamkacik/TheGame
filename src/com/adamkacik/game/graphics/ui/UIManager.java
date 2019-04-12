@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.adamkacik.game.graphics.Screen;
+
 
 public class UIManager {
 

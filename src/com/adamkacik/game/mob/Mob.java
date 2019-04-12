@@ -17,6 +17,8 @@ public abstract class Mob extends Entity{
 	
 	protected boolean moving = false;
 	protected boolean walking = false;
+	
+	protected int health;
 
 	//protected List<Projectile> projectiles = new ArrayList<Projectile>();
 	protected enum Direction{

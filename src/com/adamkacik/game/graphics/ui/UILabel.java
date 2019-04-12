@@ -4,7 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Color;
 
-import com.adamkacik.game.graphics.Screen;
+
 import com.adamkacik.game.util.Vector2i;
 
 public class UILabel extends UIComponent {

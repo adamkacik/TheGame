@@ -3,15 +3,16 @@ package com.adamkacik.game.graphics.ui;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import com.adamkacik.game.graphics.Screen;
+
 import com.adamkacik.game.util.Vector2i;
 
 public class UIComponent {
 
 	
 
-	public int backgroundColor;
-	public Vector2i position,offset;
+	
+	public Vector2i position;
+	protected Vector2i offset;
 	public Color color;
 	
 	public UIComponent(Vector2i position) {

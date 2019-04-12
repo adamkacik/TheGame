@@ -40,6 +40,11 @@ public class Vector2i { //i because integer
 		this.y +=vector.y;
 		return this;
 	}
+	public Vector2i add(int value) {
+		this.x +=value;
+		this.y +=value;
+		return this;
+	}
 	public Vector2i subtrack(Vector2i vector) {
 		this.x -=vector.x;
 		this.y -=vector.y;

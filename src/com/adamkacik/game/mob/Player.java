@@ -1,5 +1,6 @@
 package com.adamkacik.game.mob;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.List;
@@ -18,6 +19,7 @@ import com.adamkacik.game.graphics.SpriteSheet;
 import com.adamkacik.game.graphics.ui.UILabel;
 import com.adamkacik.game.graphics.ui.UIManager;
 import com.adamkacik.game.graphics.ui.UIPanel;
+import com.adamkacik.game.graphics.ui.UIProgressBar;
 import com.adamkacik.game.input.Keyboard;
 import com.adamkacik.game.input.Mouse;
 import com.adamkacik.game.level.Level;
@@ -41,6 +43,7 @@ public class Player extends Mob {
 	private int fireRate = 0;
 	
 	private UIManager ui;
+	private UIProgressBar uiHealthBar;
 
 	
 	public Player(String name,Keyboard input) {
@@ -67,6 +70,16 @@ public class Player extends Mob {
 		nameLabel.setFont(new Font("Verdana", Font.PLAIN, 24));
 		nameLabel.dropShadow = true;
 		panel.addComponent(nameLabel);
+		uiHealthBar = new UIProgressBar(new Vector2i(50,210),new Vector2i(150,20));
+		uiHealthBar.setColor(0x6a6a6a);
+		uiHealthBar.setForegroundColor(Color.RED);
+		panel.addComponent(uiHealthBar);
+		UILabel hpLabel = new UILabel(new Vector2i(uiHealthBar.position).add(new Vector2i(2,16)),"HP");
+		hpLabel.setColor(0xffffff);
+		hpLabel.setFont(new Font("Veranda",Font.PLAIN,18));
+		panel.addComponent(hpLabel);
+		//Player default attributes
+		health = 100;
 	}
 
 	public String getName() {
@@ -108,6 +121,7 @@ public class Player extends Mob {
 		}
 		clear();
 		updateShooting();
+		uiHealthBar.setProgress(health/100);
 		inventory();
 		showMap();
 	}
@@ -128,6 +142,7 @@ public class Player extends Mob {
 			shoot(x, y, dir);
 			fireRate = WizardProjectile.FIRE_RATE;
 		}
+		
 	}
 
 	private void inventory() { // inventory

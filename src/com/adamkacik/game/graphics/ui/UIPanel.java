@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.adamkacik.game.graphics.Screen;
+
 import com.adamkacik.game.graphics.Sprite;
 import com.adamkacik.game.util.Vector2i;
 
