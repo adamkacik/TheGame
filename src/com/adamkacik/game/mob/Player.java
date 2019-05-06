@@ -16,6 +16,7 @@ import com.adamkacik.game.graphics.AnimatedSprite;
 import com.adamkacik.game.graphics.Screen;
 import com.adamkacik.game.graphics.Sprite;
 import com.adamkacik.game.graphics.SpriteSheet;
+import com.adamkacik.game.graphics.ui.UIButton;
 import com.adamkacik.game.graphics.ui.UILabel;
 import com.adamkacik.game.graphics.ui.UIManager;
 import com.adamkacik.game.graphics.ui.UIPanel;
@@ -44,7 +45,7 @@ public class Player extends Mob {
 	
 	private UIManager ui;
 	private UIProgressBar uiHealthBar;
-
+	private UIButton button;
 	
 	public Player(String name,Keyboard input) {
 		this.name = name;
@@ -80,6 +81,10 @@ public class Player extends Mob {
 		panel.addComponent(hpLabel);
 		//Player default attributes
 		health = 100;
+		
+		button = new UIButton(new Vector2i(10,260),new Vector2i(100,30));
+		button.setText("Hello");
+		panel.addComponent(button);
 	}
 
 	public String getName() {
