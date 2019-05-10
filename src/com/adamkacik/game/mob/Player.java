@@ -83,13 +83,13 @@ public class Player extends Mob {
 		//Player default attributes
 		health = 100;
 		
-		button = new UIButton(new Vector2i(10,260),new Vector2i(100,30), new UIActionListener() {
+		button = new UIButton(new Vector2i(150,10),new Vector2i(80,30), new UIActionListener() {
 			public void perform() {
 				System.out.println("Button Pressed!");
 				System.exit(0);
 			}
 		});
-		button.setText("MENU");
+		button.setText("EXIT");
 		panel.addComponent(button);
 	}
 

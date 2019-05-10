@@ -40,6 +40,10 @@ public class UIButton extends UIComponent {
 		
 	}
 	
+	public void setButtonListener(UIButtonListener buttonListener) {
+		this.buttonListener = buttonListener;
+	}
+	
 	public void setText(String text) {
 		if(text == " ") {
 			label.active = false;
