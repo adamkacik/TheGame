@@ -86,9 +86,10 @@ public class Player extends Mob {
 		button = new UIButton(new Vector2i(10,260),new Vector2i(100,30), new UIActionListener() {
 			public void perform() {
 				System.out.println("Button Pressed!");
+				System.exit(0);
 			}
 		});
-		button.setText("Hello");
+		button.setText("MENU");
 		panel.addComponent(button);
 	}
 

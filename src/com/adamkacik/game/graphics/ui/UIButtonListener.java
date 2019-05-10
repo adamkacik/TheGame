@@ -9,10 +9,11 @@ public class UIButtonListener {
 		button.setColor(0xaaaaaa);
 	}
 	public void pressed(UIButton button) {
-		
+		button.setColor(0xcc2222);
+		System.out.println("pressed!");
 	}
 	public void released(UIButton button) {
-		
+		System.out.println("Released!!");
 	}
 	
 }

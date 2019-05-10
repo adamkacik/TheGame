@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
 
 import com.adamkacik.game.input.Mouse;
 import com.adamkacik.game.util.Vector2i;
@@ -15,7 +16,8 @@ public class UIButton extends UIComponent {
 	private UIActionListener actionListener;
 	
 	private boolean inside = false;
-	
+	private boolean pressed = false;
+	private boolean blocked = false;
 	
 	
 	public UIButton(Vector2i position, Vector2i size, UIActionListener actionListener) {
@@ -52,9 +54,21 @@ public class UIButton extends UIComponent {
 				buttonListener.entered(this);
 			inside = true;
 			
+			if(!pressed && Mouse.getButton() == MouseEvent.BUTTON1) {
+				buttonListener.pressed(this);
+
+				pressed = true;
+			} else if(pressed && Mouse.getButton() == MouseEvent.NOBUTTON) {
+				buttonListener.released(this);
+				pressed = false;
+				actionListener.perform();
+				
+			}
 		}else {
-			if (inside)
+			if (inside) {
 				buttonListener.exited(this);
+				pressed = false;
+			}
 			inside = false;
 		}
 		
